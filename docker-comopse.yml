@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+
+  video_server:
+    image: registry-vpc.cn-hangzhou.aliyuncs.com/busy_service/video_server:069dae46
+    restart: always
+    environment:
+      LOC_CFG: /data/config/config.yml
+    volumes:
+      - ./config/video_server.yml:/data/config/config.yml
+    ports:
+      - "7012:7012"
