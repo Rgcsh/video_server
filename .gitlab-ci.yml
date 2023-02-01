@@ -26,6 +26,7 @@ job_deploy_test:
   #  when: manual
   script:
     - cd /home/work/www/camera_server
+    - docker login --username $REGISTRY_USER --password $REGISTRY_PWD registry.cn-hangzhou.aliyuncs.com
     # 修改 版本名称
     # -i:源文件修改
     # s:替换
