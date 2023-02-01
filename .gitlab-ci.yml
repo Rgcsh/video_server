@@ -33,4 +33,4 @@ job_deploy_test:
     - sed -i "s!busy_service\/video_server:[0-9a-z]*!busy_service\/video_server:$CI_COMMIT_SHORT_SHA!" docker-compose.yml
     - docker-compose up -d video_server
   tags:
-    - ali-test-dev1
+    - 208-runner
