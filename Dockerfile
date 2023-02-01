@@ -1,12 +1,11 @@
 FROM gocv/opencv:4.5.4 AS build
 ENV GO111MODULE=on
-#ENV PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
 ENV GOPROXY=https://goproxy.cn/,https://mirrors.aliyun.com/goproxy/,direct
 WORKDIR  /release
 
 ADD . .
 RUN go mod tidy && go mod vendor
-RUN GOOS=linux CGO_ENABLED=1 GOARCH=amd64 go build -ldflags="-s -w" -installsuffix cgo -o video_server main.go
+RUN GOOS=linux CGO_ENABLED=0 GOARCH=amd64 go build -ldflags="-s -w" -installsuffix cgo -o video_server main.go
 
 FROM debian:bullseye-slim
 
