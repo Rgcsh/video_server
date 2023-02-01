@@ -5,7 +5,7 @@ WORKDIR  /release
 
 ADD . .
 RUN go mod tidy && go mod vendor
-RUN GOOS=linux CGO_ENABLED=0 GOARCH=amd64 go build -ldflags="-s -w" -installsuffix cgo -o video_server main.go
+RUN GOOS=linux CGO_ENABLED=1 GOARCH=amd64 go build -ldflags="-s -w" -installsuffix cgo -o video_server main.go
 
 FROM debian:bullseye-slim
 
