@@ -7,7 +7,7 @@ ADD . .
 RUN go mod tidy && go mod vendor
 RUN GOOS=linux CGO_ENABLED=1 GOARCH=amd64 go build -ldflags="-s -w" -installsuffix cgo -o video_server main.go
 
-FROM debian:bullseye-slim
+FROM gocv/opencv:4.5.4
 
 ENV LANG C.UTF-8
 
