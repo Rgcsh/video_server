@@ -75,3 +75,10 @@ func FileSort(FileNames *[]string) *[]string {
 func VideoFileHandler(dir string) (FileNames *[]string) {
 	return FileSort(FileFilter(FileLS(dir)))
 }
+
+func DelFile(filepath string) {
+	err := os.Remove(filepath)
+	if err != nil {
+		fmt.Println("删除文件失败")
+	}
+}

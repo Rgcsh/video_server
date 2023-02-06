@@ -32,6 +32,6 @@ job_deploy_test:
     # s:替换
     # 此命令含义为 替换 busy_service/video_server:xxxx 为新版本号
     - sed -i "s!busy_service\/video_server:[0-9a-z]*!busy_service\/video_server:$CI_COMMIT_SHORT_SHA!" docker-compose.yml
-    - docker-compose up -d video_server
+    - docker-compose up -d vs
   tags:
     - 208-runner

@@ -134,3 +134,14 @@ func TimeToString(t time.Time, format string) *string {
 func GetCurrentTime() string {
 	return *TimeToString(time.Now(), DateTimeFormat)
 }
+
+//
+//  @Description: 获取过去某天的 时间
+//  @param days:
+//  @return *time.Time:
+//
+func GetPastDate(days int) *time.Time {
+	currentTime := time.Now()
+	pastTime := currentTime.AddDate(0, 0, days)
+	return &pastTime
+}

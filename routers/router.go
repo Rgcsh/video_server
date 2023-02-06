@@ -32,6 +32,7 @@ func InitRouter() *gin.Engine {
 	apiVideo.GET("/download", video_action.DownloadVideoHandler)
 	apiVideo.POST("/query", video_action.QueryVideoHandler)
 	//定时任务注册
-	_, _ = crontabs.Crontab.AddFunc("* * 1 * * *", crontabs.Job1)
+	_, _ = crontabs.Crontab.AddFunc("* * 1 * * *", crontabs.CleanVideoFile)
+	//_, _ = crontabs.Crontab.AddFunc("* * * * * *", crontabs.CleanVideoFile)
 	return r
 }
