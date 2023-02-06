@@ -28,7 +28,6 @@ func FileLS(dir string) *[]string {
 	if err != nil {
 		panic(api_error.New(504, "获取当前路径失败 err:%v", err))
 	}
-	fmt.Println(pwd)
 	fileInfos, err := ioutil.ReadDir(filepath.Join(pwd, dir))
 
 	if err != nil {
