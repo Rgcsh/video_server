@@ -13,11 +13,11 @@ import (
 	"gocv.io/x/gocv"
 	"image"
 	"image/color"
+	"time"
 	"video_server/pkg/gtime"
 	"video_server/pkg/mqtt_service"
 	"video_server/pkg/udp_service"
 	"video_server/pkg/utils"
-	"time"
 )
 
 const MqttTopic string = "camera_frq"
@@ -122,7 +122,7 @@ func Convert2IMG(ImgChannel <-chan []byte, MqttMessagesChannel chan<- []string) 
 						fmt.Println("mqtt channel缓存已满,丢弃此消息")
 					}
 				}
-				gocv.PutText(&img, gtime.GetCurrentTime(), image.Point{10, 10}, gocv.FontHersheyComplexSmall, 1, redColor, 1)
+				gocv.PutText(&img, gtime.GetCurrentTime(), image.Point{10, 20}, gocv.FontHersheyComplexSmall, 1, redColor, 1)
 				//存储到mp4中
 				err = writer.Write(img)
 				if err != nil {
