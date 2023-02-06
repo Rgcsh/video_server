@@ -17,7 +17,7 @@ COPY --from=build /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 COPY --from=build /release/video_server .
 
 # 设置时区
-RUN mkdir log
+RUN mkdir log video_file
 RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     echo 'Asia/Shanghai' > /etc/timezone \
     && cp /etc/apt/sources.list /etc/apt/sources.list.bak \
