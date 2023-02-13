@@ -14,7 +14,7 @@ import (
 
 var UDPListen *net.UDPConn
 
-func UPDSetUp() {
+func UDPSetUp() {
 	var err error
 	UDPListen, err = net.ListenUDP("udp", &net.UDPAddr{
 		IP:   net.IPv4(0, 0, 0, 0),
@@ -27,7 +27,7 @@ func UPDSetUp() {
 	return
 }
 
-func UPDClose() {
+func UDPClose() {
 	err := UDPListen.Close()
 	if err != nil {
 		panic(fmt.Sprintf("关闭UDPListen失败,err:%v", err))

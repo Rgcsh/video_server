@@ -170,9 +170,9 @@ func VideoUDPServiceSetUp() {
 	ImgSendChannel := make(chan []byte, 20)
 	MqttMessagesChannel := make(chan []string, 2)
 
-	//upd服务启动并接收数据
-	udp_service.UPDSetUp()
-	defer udp_service.UPDClose()
+	//udp服务启动并接收数据
+	udp_service.UDPSetUp()
+	defer udp_service.UDPClose()
 	go udp_service.UDPReceive(ImgChannel, ImgSendChannel)
 	go udp_service.UDPSend(ImgSendChannel)
 
