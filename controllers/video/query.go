@@ -10,15 +10,17 @@ import (
 	"video_server/pkg/utils"
 )
 
+//
+//  QueryFields
+//  @Description: 入参结构体
+//
 type QueryFields struct {
 	StartTime string `json:"start_time" binding:"required"`
 	EndTime   string `json:"end_time" binding:"required"`
 }
 
 //
-//  @Description: 查询 关注数据 或检查是否添加关注
-//  四个参数都传 可以检查 对应数据是否添加关注,返回的切片长度为0 表示未关注
-//  此接口可以灵活的查询不同范围的数据
+//  @Description: 根据入参的 时间段,查询符合条件的所有视频名称
 //  @param c:
 //  /video/query
 //
@@ -34,17 +36,17 @@ func QueryVideoHandler(c *gin.Context) {
 	//获取文件列表
 	files := utils.VideoFileHandler(utils.VideoFileDir)
 
-	//读取 > StartTime时间的后PageSize条数据
+	//获取 符合时间段的视频名称
 	resultFiles := GetGtStartTimeFiles(files, startTime, endTime)
 	// 结果数据结构
 	ctx.Success(resultFiles)
 }
 
 //
-//  @Description: 获取 大于 开始时间的文件
+//  @Description: 获取 大于 开始时间,小于结束时间的文件
 //  @param FileNames:
 //  @param StartTime:
-//  @param PageSize:
+//  @param EndTime:
 //  @return *[]string:
 //
 func GetGtStartTimeFiles(FileNames *[]string, StartTime, EndTime string) *[]string {

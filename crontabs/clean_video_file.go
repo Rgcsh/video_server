@@ -3,12 +3,16 @@ package crontabs
 import (
 	"fmt"
 	"strings"
+	"video_server/pkg/glog"
 	"video_server/pkg/gtime"
 	"video_server/pkg/utils"
 )
 
+//
+//  @Description: 每日定时尝试清理7天前的视频文件
+//
 func CleanVideoFile() {
-	fmt.Println("开始删除7天前的视频文件")
+	glog.Log.Info("开始删除7天前的视频文件")
 	//  获取7天前的时间
 	StartTimeObj := gtime.GetPastDate(-7)
 	//获取文件列表

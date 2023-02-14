@@ -1,8 +1,7 @@
-// Copyright 2019 Wu Dong
+// 
 // All rights reserved
 //
-// @Author: 'Wu Dong <wudong@eastwu.cn>'
-// @Time: '2021/10/8 4:46 下午'
+// @Author: 'rgc'
 
 package utils
 

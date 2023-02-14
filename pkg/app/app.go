@@ -1,8 +1,7 @@
-// Copyright 2019 Wu Dong
+// 
 // All rights reserved
 //
-// @Author: 'Wu Dong <wudong@eastwu.cn>'
-// @Time: '2021/10/9 1:08 下午'
+// @Author: 'rgc'
 
 package app
 
@@ -11,12 +10,12 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
+	"reflect"
+	"time"
 	"video_server/pkg/api_error"
 	"video_server/pkg/e"
 	"video_server/pkg/glog"
 	"video_server/pkg/validator_rewrite"
-	"reflect"
-	"time"
 )
 
 //
@@ -52,6 +51,12 @@ type Gin struct {
 	Params interface{}
 }
 
+//
+//  @Description: 新建Gin对象,且将入参绑定到Params参数中
+//  @param c:
+//  @param params:
+//  @return *Gin:
+//
 func NewGin(c *gin.Context, params interface{}) *Gin {
 	ins := new(Gin)
 	ins.C = c
@@ -66,6 +71,12 @@ func NewGin(c *gin.Context, params interface{}) *Gin {
 	return ins
 }
 
+//
+//  @Description: 读取请求入参,并绑定到结构体中
+//  @receiver g
+//  @param obj:
+//  @return error:
+//
 func (g *Gin) Request(obj interface{}) error {
 	//将入参绑定到结构体中
 	err := g.C.ShouldBindJSON(&obj)
@@ -87,6 +98,13 @@ func (g *Gin) Request(obj interface{}) error {
 	return nil
 }
 
+//
+//  @Description: 设置接口响应
+//  @receiver g
+//  @param code:
+//  @param message:
+//  @param body:
+//
 func (g *Gin) Response(code int, message string, body interface{}) {
 	res := NewResponse(code, message, body)
 	g.C.JSON(200, res)
@@ -112,10 +130,12 @@ func (g *Gin) Success(body ...interface{}) {
 	}
 }
 
-func (g *Gin) SuccessMap() {
-	g.Success(make(map[string]string))
-}
-
+//
+//  @Description: 失败响应
+//  @receiver g
+//  @param code:
+//  @param message:
+//
 func (g *Gin) Fail(code int, message string) {
 	if message == "" {
 		g.Response(code, e.GetMessage(code), make(map[string]string))

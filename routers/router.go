@@ -1,8 +1,7 @@
-// Copyright 2019 Wu Dong
+//
 // All rights reserved
 //
-// @Author: 'Wu Dong <wudong@eastwu.cn>'
-// @Time: '2021/10/8 5:09 下午'
+// @Author: 'rgc'
 
 package routers
 
@@ -33,6 +32,5 @@ func InitRouter() *gin.Engine {
 	apiVideo.POST("/query", video_action.QueryVideoHandler)
 	//定时任务注册
 	_, _ = crontabs.Crontab.AddFunc("* * 1 * * *", crontabs.CleanVideoFile)
-	//_, _ = crontabs.Crontab.AddFunc("* * * * * *", crontabs.CleanVideoFile)
 	return r
 }

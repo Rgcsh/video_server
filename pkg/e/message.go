@@ -1,17 +1,21 @@
-// Copyright 2019 Wu Dong
+// 
 // All rights reserved
 //
-// @Author: 'Wu Dong <wudong@eastwu.cn>'
-// @Time: '2021/10/9 1:13 下午'
+// @Author: 'rgc'
 
 package e
 
-var Message = map[int]string {
+var Message = map[int]string{
 	200: "Success",
 	500: "Server Internal error",
 	504: "入参解析失败",
 }
 
+//
+//  @Description: 根据状态码获取对应的消息
+//  @param code:
+//  @return string:
+//
 func GetMessage(code int) string {
 	message, ok := Message[code]
 	if ok {

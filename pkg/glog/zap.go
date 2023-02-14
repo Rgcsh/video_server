@@ -1,18 +1,17 @@
-// Copyright 2019 Wu Dong
+//
 // All rights reserved
 //
-// @Author: 'Wu Dong <wudong@eastwu.cn>'
-// @Time: '2021/10/25 9:33 上午'
+// @Author: 'rgc'
 
 package glog
 
 import (
-	"video_server/conf"
 	"github.com/natefinch/lumberjack"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"os"
 	"time"
+	"video_server/conf"
 )
 
 var Log *zap.Logger
@@ -64,6 +63,6 @@ func SetUp() {
 	// 实例化日志实例
 	// https://stackoverflow.com/questions/53250323/uber-zap-logger-not-printing-caller-information-in-the-log-statement
 	log := zap.New(core, zap.AddCaller())
-	defer log.Sync()
+	defer func() { _ = log.Sync() }()
 	Log = log
 }

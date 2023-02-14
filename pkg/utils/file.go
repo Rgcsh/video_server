@@ -1,4 +1,4 @@
-// (C) Guangcai Ren <rgc@bvrft.com>
+// 
 // All rights reserved
 // create time '2022/12/9 21:48'
 //
@@ -15,6 +15,7 @@ import (
 	"sort"
 	"strings"
 	"video_server/pkg/api_error"
+	"video_server/pkg/glog"
 )
 
 //
@@ -78,6 +79,6 @@ func VideoFileHandler(dir string) (FileNames *[]string) {
 func DelFile(filepath string) {
 	err := os.Remove(filepath)
 	if err != nil {
-		fmt.Println("删除文件失败")
+		glog.Log.Info("删除文件失败")
 	}
 }

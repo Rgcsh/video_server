@@ -1,8 +1,7 @@
-// Copyright 2019 Wu Dong
+// 
 // All rights reserved
 //
-// @Author: 'Wu Dong <wudong@eastwu.cn>'
-// @Time: '2021/10/8 4:30 下午'
+// @Author: 'rgc'
 
 package conf
 
@@ -18,12 +17,25 @@ type App struct {
 }
 
 type Config struct {
-	LogConf LogConf `yaml:"LogConf"`
-	App     App     `yaml:"App"`
+	LogConf  LogConf  `yaml:"LogConf"`
+	App      App      `yaml:"App"`
+	MqttConf MqttConf `yaml:"MqttConf"`
+	UDPConf  UDPConf  `yaml:"UDPConf"`
 }
 
 type LogConf struct {
 	FilePath string `yaml:"FilePath"`
+}
+
+type MqttConf struct {
+	UserName string `yaml:"UserName"`
+	Password string `yaml:"Password"`
+	Host     string `yaml:"Host"`
+	Port     int    `yaml:"Port"`
+}
+
+type UDPConf struct {
+	Port int `yaml:"Port"`
 }
 
 var Conf = &Config{}

@@ -1,4 +1,4 @@
-// (C) Guangcai Ren <rgc@bvrft.com>
+// 
 // All rights reserved
 // create time '2022/8/16 15:34'
 //
@@ -27,8 +27,12 @@ func SetUp() {
 	}
 }
 
+//
+//  @Description: 修改gin框架中的Validator引擎属性，实现自定制
+//  @param locale:
+//  @return err:
+//
 func ValidatorTrans(locale string) (err error) {
-	// 修改gin框架中的Validator引擎属性，实现自定制
 	if v, ok := binding.Validator.Engine().(*validator.Validate); ok {
 
 		zhT := zh.New() // 中文翻译器
