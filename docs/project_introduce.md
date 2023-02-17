@@ -61,8 +61,7 @@
 #### 使用技术
 
 * 语言:python
-* 软件或框架:micropython
-* 软件或框架:umqtt(MQTT协议的实现)
+* 软件或框架:micropython+umqtt(MQTT协议的实现)
 * 应用层协议:MQTT
 * 传输层协议:TCP
 * 硬件:ESP32-CAM开发套件
@@ -70,6 +69,8 @@
 ## 服务间数据流向图
 
 ![img.png](img.png)
+
+![img_1.png](img_1.png)
 
 ## 相关链接:
 
@@ -83,5 +84,5 @@
 * [相关链接](https://www.cnblogs.com/yajunLi/p/6595509.html)
 
 ## 效果演示
-GIF图
 
+GIF图
