@@ -65,7 +65,7 @@
 * 语言:python
 * 软件或框架:micropython+umqtt(MQTT协议的实现)
 * 应用层协议:MQTT
-* 传输层协议:TCP
+* 传输层协议:TCP,UDP
 * 硬件:ESP32-CAM开发套件
 
 ## 服务间数据流向图
