@@ -6,6 +6,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 	"video_server/conf"
@@ -36,15 +37,18 @@ func init() {
 //  @Description: 项目入口
 //
 func main() {
+	// udp相关服务
 	defer udp_service.UDPClose()
 	go video_handler.VideoHandler()
+
+	//gin web端服务
 	gin.SetMode(gin.ReleaseMode)
 	// 设置未声明的参数无法传参
 	gin.EnableJsonDecoderDisallowUnknownFields()
 	r := routers.InitRouter()
-
-	glog.Log.Info("http server will start at", zap.Int("port", 7069))
-	if err := r.Run(":7069"); err != nil {
+	port := 7069
+	glog.Log.Info(fmt.Sprintf("启动gin web端服务成功,端口为:%v", port))
+	if err := r.Run(fmt.Sprintf(":%v", port)); err != nil {
 		glog.Log.Error("http server start failed", zap.Error(err))
 		return
 	}

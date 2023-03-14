@@ -2,17 +2,20 @@ version: '3.8'
 
 services:
 
-  video_server:
-    image: registry.cn-hangzhou.aliyuncs.com/busy_service/video_server:069dae46
+  vs:
+    container_name: vs
+    image: registry.cn-hangzhou.aliyuncs.com/busy_service/video_server:8f3f15b0
     restart: always
     environment:
       LOC_CFG: /data/config/config.yml
     volumes:
       - ./config/video_server.yml:/data/config/config.yml
     ports:
-      - "7012:7012"
+      - "7069:7069"
+      - "9090:9090/udp"
 
   emqx:
+    container_name: emqx
     image: emqx/emqx:latest
     restart: always
     ports:

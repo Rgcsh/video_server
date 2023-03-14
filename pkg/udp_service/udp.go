@@ -46,7 +46,7 @@ var SendToClient bool
 var SendToClientAddr *net.UDPAddr
 
 //
-//  @Description: 接收UDP数据,并发送给channel,当channel缓存满时,丢弃数据
+//  @Description: 接收UDP数据,并发送给ImgReceiveChannel,需要直播时,再将数据发送给ImgSendChannel,当channel缓存满时,丢弃数据
 //  @param ImgReceiveChannel: 从摄像头的UDP客户端接收到的待处理的图片切片channel,容量为100,超过处理不了就丢弃
 //  @param ImgSendChannel: 将图片数据转发给用户客户端进行直播的 图片切片channel,容量为20,超过处理不了就丢弃
 //

@@ -161,8 +161,8 @@ func Convert2IMG(ImgChannel <-chan []byte, MqttMessagesChannel chan<- []string) 
 }
 
 //
-//  @Description:
-//  @param MqttMessagesChannel: mqtt消息发送到channel中
+//  @Description:mqtt消息发送到channel中
+//  @param MqttMessagesChannel:
 //  @param message:
 //
 func SendMqttMessageToChannel(MqttMessagesChannel chan<- []string, message string) {

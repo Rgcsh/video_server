@@ -14,11 +14,10 @@ import (
 	"video_server/middleware"
 )
 
-//
 // InitRouter
-//  @Description: 注册 路由/定时任务
-//  @return *gin.Engine:
 //
+//	@Description: 注册 路由/定时任务
+//	@return *gin.Engine:
 func InitRouter() *gin.Engine {
 	r := gin.New()
 	// 是否启动 性能分析功能 true:启动
@@ -31,6 +30,6 @@ func InitRouter() *gin.Engine {
 	apiVideo.GET("/download", video_action.DownloadVideoHandler)
 	apiVideo.POST("/query", video_action.QueryVideoHandler)
 	//定时任务注册
-	_, _ = crontabs.Crontab.AddFunc("* * 1 * * *", crontabs.CleanVideoFile)
+	_, _ = crontabs.Crontab.AddFunc("* 0 1 * * *", crontabs.CleanVideoFile)
 	return r
 }

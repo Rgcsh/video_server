@@ -1,4 +1,4 @@
-// 
+//
 // All rights reserved
 // create time '2022/12/8 14:49'
 //
@@ -21,10 +21,6 @@ var MqttClient *mqtt.Client
 
 //
 //  @Description: mqtt根据参数初始化,并连接到mqtt服务器
-//  @param port:
-//  @param broker: ip地址
-//  @param username:
-//  @param password:
 //
 func MqttSetUp() {
 	opts := mqtt.NewClientOptions()
@@ -50,9 +46,7 @@ func MqttSetUp() {
 
 //
 //  @Description: 发布消息到topic
-//  @param client:
-//  @param topic:
-//  @param message:
+//  @param MqttMessagesChannel:
 //
 func MqttPublish(MqttMessagesChannel <-chan []string) {
 	for {
