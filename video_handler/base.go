@@ -25,13 +25,11 @@ const MqttTopic string = "camera_frq"
 const TimeCycle time.Duration = 60
 const NoDiffTimesCount int = 3
 
-//
-//  @Description: 处理图片的协程,功能如下:
-// 		用opencv进行动态变化比对,将变化的视频帧存入视频文件;
-//		根据某时间段内 视频帧有无变化,动态变更esp32-cam发送视频帧频率
-//  @param ImgChannel:从摄像头的UDP客户端接收到的待处理的图片切片channel,容量为100,超过处理不了就丢弃
-//  @param MqttMessagesChannel:将消息发送到mqtt服务器的channel,容量为2
-//
+//	 @Description: 处理图片的协程,功能如下:
+//			用opencv进行动态变化比对,将变化的视频帧存入视频文件;
+//			根据某时间段内 视频帧有无变化,动态变更esp32-cam发送视频帧频率
+//	 @param ImgChannel:从摄像头的UDP客户端接收到的待处理的图片切片channel,容量为100,超过处理不了就丢弃
+//	 @param MqttMessagesChannel:将消息发送到mqtt服务器的channel,容量为2
 func Convert2IMG(ImgChannel <-chan []byte, MqttMessagesChannel chan<- []string) {
 	redColor := color.RGBA{255, 0, 0, 0}
 	es := gocv.GetStructuringElement(gocv.MorphEllipse, image.Point{9, 4})
@@ -114,10 +112,11 @@ func Convert2IMG(ImgChannel <-chan []byte, MqttMessagesChannel chan<- []string) 
 					isDiffImg = true
 					gocv.Rectangle(&img, gocv.BoundingRect(timeCycle), redColor, 1)
 				}
-				//if !isDiffImg {
-				//	glog.Log.Info("没有不同点,跳过此视屏帧")
-				//	continue
-				//}
+				//跳过
+				if !isDiffImg {
+					glog.Log.Info("没有不同点,跳过此视屏帧")
+					continue
+				}
 				//检测到不同点
 				if isDiffImg && sendImgFrequency != utils.SendImgFrequencyHigh {
 					glog.Log.Debug("检测到不同点,恢复发送图片频率")
@@ -160,11 +159,9 @@ func Convert2IMG(ImgChannel <-chan []byte, MqttMessagesChannel chan<- []string) 
 	}
 }
 
-//
-//  @Description:mqtt消息发送到channel中
-//  @param MqttMessagesChannel:
-//  @param message:
-//
+// @Description:mqtt消息发送到channel中
+// @param MqttMessagesChannel:
+// @param message:
 func SendMqttMessageToChannel(MqttMessagesChannel chan<- []string, message string) {
 	select {
 	case MqttMessagesChannel <- []string{MqttTopic, message}:
@@ -174,9 +171,7 @@ func SendMqttMessageToChannel(MqttMessagesChannel chan<- []string, message strin
 	}
 }
 
-//
-//  @Description: 处理视频帧
-//
+// @Description: 处理视频帧
 func VideoHandler() {
 	//从摄像头的UDP客户端接收到的待处理的图片切片channel,容量为100,超过处理不了就丢弃
 	ImgReceiveChannel := make(chan []byte, 100)
